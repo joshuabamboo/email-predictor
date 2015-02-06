@@ -29,7 +29,8 @@ class Predictor
   end
 
   def no_match
-    puts "Sorry, we can't accurately predict the email address for #{@first_name}."
+    puts "Sorry, we can not accurately predict the email addresses at #{@domain} at this time. Try another company."
+    play_again
   end
 
   def find_matching_emails
@@ -45,21 +46,29 @@ class Predictor
     @email.first_initial_dot_last_initial(@first_name, @last_name, @domain) if @pattern.first_initial_dot_last_initial?(@company_emails)
   end
 
-  # def num_of_company_emails
-  #   matching_emails.size
-  # end
+  def num_of_company_emails
+    @company_emails.size
+  end
 
-  # def construct_email
-    
-  # end
+  def message
+    puts "We have #{num_of_company_emails} email(s) from people that work at #{@domain}. Based off those patterns, we predict that #{@first_name}'s email is: "
+  end
+
+  def play_again
+    puts "Would you like to search again? (Y/n)"
+    choice = gets.chomp.downcase
+    Predictor.new.predict if choice == "y"
+    abort("Thanks for using The Prediction Machine. Goodbye.") if choice == "n"
+  end
+
 
   def predict
     get_name
     get_domain
     no_match if !match?
-    if match?
-      find_matching_emails
-      construct_emails
-    end
+    find_matching_emails
+    message
+    construct_emails
+    play_again
   end
 end
