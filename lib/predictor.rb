@@ -1,8 +1,11 @@
 class Predictor
+
   def initialize
     @name = nil
     @domain = nil
+    @company_emails = {}
     @emails = Email.all_emails
+    @pattern = Pattern.new
   end
 
   def get_name
@@ -27,11 +30,9 @@ class Predictor
   end
 
   def matching_emails
-    emails = []
     @emails.map do |name, email|
-      emails << email if email.include?(@domain)
+      @company_emails[name.downcase] = email if email.include?(@domain)
     end
-    emails.compact
   end
 
   def num_of_company_emails
@@ -54,7 +55,7 @@ class Predictor
     get_name
     get_domain
     no_match if !match?
-    puts matching_emails if match?
-    puts num_of_company_emails
+    matching_emails if match?
+    puts @company_emails
   end
 end
