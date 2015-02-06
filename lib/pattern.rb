@@ -3,19 +3,7 @@ class Pattern
     @emails = Email.new.all_emails
   end
 
-  def first_name_dot_last_name
-    
-  end
-
-  def first_name_dot_last_initial
-    
-  end
-
-  def first_initial_dot_last_name
-    
-  end
-
-  def first_initial_dot_last_initial
+  def find_pattern
     
   end
 end

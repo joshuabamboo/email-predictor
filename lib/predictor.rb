@@ -2,6 +2,7 @@ class Predictor
   def initialize
     @name = nil
     @domain = nil
+    @emails = Email.all_emails
   end
 
   def get_name
@@ -15,11 +16,26 @@ class Predictor
   end
 
   def match?
-    
+    @emails.map do |name, email|
+      return true if email.include?(@domain)
+    end
+    false
+  end
+
+  def no_match
+    puts "Sorry, we can't accurately predict the email address for #{@name}."
+  end
+
+  def matching_emails
+    emails = []
+    @emails.map do |name, email|
+      emails << email if email.include?(@domain)
+    end
+    emails.compact
   end
 
   def num_of_company_emails
-    
+    matching_emails.size
   end
 
   def predict_email
@@ -32,5 +48,13 @@ class Predictor
 
   def construct_email
     
+  end
+
+  def predict
+    get_name
+    get_domain
+    no_match if !match?
+    puts matching_emails if match?
+    puts num_of_company_emails
   end
 end
