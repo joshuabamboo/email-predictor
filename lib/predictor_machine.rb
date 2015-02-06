@@ -1,8 +1,5 @@
-class Predictor
+class PredictionMachine
   def initialize
-    @first_name = nil
-    @last_name = nil
-    @domain = nil
     @company_emails = {}
     @emails = Email.all_emails
     @email = Email.new
@@ -22,9 +19,7 @@ class Predictor
   end
 
   def match?
-    @emails.map do |name, email|
-      return true if email.include?(@domain)
-    end
+    @emails.map {|name, email| return true if email.include?(@domain)}
     false
   end
 
@@ -34,9 +29,7 @@ class Predictor
   end
 
   def find_matching_emails
-    @emails.map do |name, email|
-      @company_emails[name.downcase] = email if email.include?(@domain)
-    end
+    @emails.map {|name, email| @company_emails[name.downcase] = email if email.include?(@domain)}
   end
 
   def construct_emails
@@ -57,10 +50,9 @@ class Predictor
   def play_again
     puts "Would you like to search again? (Y/n)"
     choice = gets.chomp.downcase
-    Predictor.new.predict if choice == "y"
+    PredictionMachine.new.predict if choice == "y"
     abort("Thanks for using The Prediction Machine. Goodbye.") if choice == "n"
   end
-
 
   def predict
     get_name

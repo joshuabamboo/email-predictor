@@ -20,30 +20,22 @@ class Pattern
   end
 
   def first_name_dot_last_name?(company_emails)
-    company_emails.map do |name, email|
-      return true if "#{first_name(name)}.#{last_name(name)}" == username(email)
-    end
+    company_emails.map {|name, email| return true if "#{first_name(name)}.#{last_name(name)}" == username(email)}
     false
   end
 
   def first_name_dot_last_initial?(company_emails)
-    company_emails.map do |name, email|
-      return true if "#{first_name(name)}.#{last_initial(name)}" == username(email)
-    end
+    company_emails.map {|name, email| return true if "#{first_name(name)}.#{last_initial(name)}" == username(email)}
     false
   end
 
   def first_initial_dot_last_name?(company_emails)
-    company_emails.map do |name, email|
-      return true if "#{first_initial(name)}.#{last_name(name)}" == username(email)
-    end
+    company_emails.map {|name, email| return true if "#{first_initial(name)}.#{last_name(name)}" == username(email)}
     false
   end
 
   def first_initial_dot_last_initial?(company_emails)
-    company_emails.map do |name, email|
-      return true if "#{first_initial(name)}.#{last_initial(name)}" == username(email)
-    end
+    company_emails.map {|name, email| return true if "#{first_initial(name)}.#{last_initial(name)}" == username(email)}
     false
   end
 end
