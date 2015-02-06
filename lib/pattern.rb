@@ -1,8 +1,4 @@
 class Pattern
-  def initialize
-    @emails = Email.all_emails
-  end
-
   def first_name(name)
     name.split.first
   end
@@ -27,42 +23,27 @@ class Pattern
     company_emails.map do |name, email|
       return true if "#{first_name(name)}.#{last_name(name)}" == username(email)
     end
+    false
   end
 
   def first_name_dot_last_initial?(company_emails)
     company_emails.map do |name, email|
       return true if "#{first_name(name)}.#{last_initial(name)}" == username(email)
     end
+    false
   end
 
   def first_initial_dot_last_name?(company_emails)
     company_emails.map do |name, email|
       return true if "#{first_initial(name)}.#{last_name(name)}" == username(email)
     end
+    false
   end
 
   def first_initial_dot_last_initial?(company_emails)
     company_emails.map do |name, email|
       return true if "#{first_initial(name)}.#{last_initial(name)}" == username(email)
     end
+    false
   end
-
-  def find_pattern
-    
-  end
-
 end
-
-# @@all_emails = {
-#     "John Ferguson" => "john.ferguson@alphasights.com",
-#     "Damon Aw" => "damon.aw@alphasights.com",
-#     "Linda Li" => "linda.li@alphasights.com",
-#     "Larry Page" => "larry.p@google.com",
-#     "Sergey Brin" => "s.brin@google.com",
-#     "Steve Jobs" => "s.j@apple.com"
-#   }
-
-#compare name to username
-
-
-#build_email(name, domain) #=> jo.john@alphasights.com
