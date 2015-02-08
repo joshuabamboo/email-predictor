@@ -19,8 +19,7 @@ class PredictionMachine
   end
 
   def match?
-    @emails.map {|name, email| return true if email.include?(@domain)}
-    false
+    @emails.any? {|name, email| email.include?(@domain)}
   end
 
   def no_match
