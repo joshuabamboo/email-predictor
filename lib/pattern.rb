@@ -34,4 +34,46 @@ class Pattern
   def first_initial_dot_last_initial?(company_emails)
     company_emails.any? {|name, email| "#{first_initial(name)}.#{last_initial(name)}" == username(email)}
   end
+
+  def first_name_dot_last_name_count(company_emails)
+    count = 0
+    company_emails.each do |name, email| 
+      if "#{first_name(name)}.#{last_name(name)}" == username(email)
+        count += 1
+      end
+    end
+    count
+  end
+
+  def first_name_dot_last_initial_count(company_emails)
+    count = 0
+    company_emails.each do |name, email| 
+      if "#{first_name(name)}.#{last_initial(name)}" == username(email)
+        count += 1
+      end
+    end
+    count
+  end
+
+  
+  def first_initial_dot_last_name_count(company_emails)
+    count = 0
+    company_emails.each do |name, email| 
+      if "#{first_initial(name)}.#{last_name(name)}" == username(email)
+        count += 1
+      end
+    end
+    count
+  end
+
+  def first_initial_dot_last_initial_count(company_emails)
+    count = 0
+    company_emails.each do |name, email| 
+      if "#{first_initial(name)}.#{last_initial(name)}" == username(email)
+        count += 1
+      end
+    end
+    count
+  end
+
 end
